@@ -56,7 +56,17 @@ app.delete('/students/:id', (req, res) => {
     }
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// // Start the server
+// app.listen(PORT, () => {
+//     console.log(`Server is running on http://localhost:${PORT}`);
+// });
+
+// Export the app for testing
+module.exports = app;
+
+// Only start the server if this file is run directly (not by a test)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+}
